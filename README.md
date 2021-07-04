@@ -1,6 +1,4 @@
-# projetoDIO
-
-#Projeto Bootcamp GFT Digital Innovation: Desenvolvendo um sistema de Aulas utilizando arquitetura API REST com Spring Boot.  
+# Projeto Bootcamp GFT Digital Innovation: Desenvolvendo um sistema de Aulas utilizando arquitetura API REST com Spring Boot.  
 
 Setup inicial de projeto com o Spring Boot Initialzr
 Criação de modelo de dados para o mapeamento de entidades em bancos de dados
