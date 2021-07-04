@@ -42,6 +42,16 @@ public class AulaService {
         return aulaMapper.toDTO(aula);
     }
 
+    public MessageResponse update(Long id, AulaDTO aulaDTO) throws AulaNotFoundException {
+        Aula aula = verifyIfExists(id);
+
+        Aula aulaUpdated = aulaMapper.toModel(aulaDTO);
+        Aula aulaSaved = aulaRepository.save(aulaUpdated);
+
+        MessageResponse message = createMesageResponse("Aula atualizada com sucesso. ID: ", id);
+        return message;
+    }
+
     public void delete(Long id) throws AulaNotFoundException {
         verifyIfExists(id);
         aulaRepository.deleteById(id);
@@ -57,6 +67,7 @@ public class AulaService {
         return aulaRepository.findById(id)
                     .orElseThrow(() -> new AulaNotFoundException(id));
     }
+
 
 
 }

@@ -35,6 +35,12 @@ public class AulaController {
         return aulaService.create(aulaDTO);
     }
 
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public MessageResponse update(@PathVariable Long id, @RequestBody AulaDTO aulaDTO) throws AulaNotFoundException {
+        return aulaService.update(id, aulaDTO);
+    }
+
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) throws AulaNotFoundException {
