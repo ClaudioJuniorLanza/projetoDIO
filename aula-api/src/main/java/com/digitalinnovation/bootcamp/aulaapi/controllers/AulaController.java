@@ -2,6 +2,7 @@ package com.digitalinnovation.bootcamp.aulaapi.controllers;
 
 import com.digitalinnovation.bootcamp.aulaapi.dto.request.AulaDTO;
 import com.digitalinnovation.bootcamp.aulaapi.dto.response.MessageResponse;
+import com.digitalinnovation.bootcamp.aulaapi.exceptions.AulaNotFoundException;
 import com.digitalinnovation.bootcamp.aulaapi.services.AulaService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,11 @@ public class AulaController {
     @GetMapping
     public List<AulaDTO> getAll(){
         return aulaService.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public AulaDTO getId(@PathVariable Long id) throws AulaNotFoundException {
+        return aulaService.getId(id);
     }
 
     @PostMapping

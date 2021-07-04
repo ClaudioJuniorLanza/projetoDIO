@@ -4,6 +4,7 @@ import com.digitalinnovation.bootcamp.aulaapi.dto.mapper.AulaMapper;
 import com.digitalinnovation.bootcamp.aulaapi.dto.request.AulaDTO;
 import com.digitalinnovation.bootcamp.aulaapi.dto.response.MessageResponse;
 import com.digitalinnovation.bootcamp.aulaapi.entities.Aula;
+import com.digitalinnovation.bootcamp.aulaapi.exceptions.AulaNotFoundException;
 import com.digitalinnovation.bootcamp.aulaapi.repository.AulaRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,13 @@ public class AulaService {
         return aula.stream()
                 .map(aulaMapper::toDTO)
                 .collect(Collectors.toList());
+    }
+
+    public AulaDTO getId(Long id) throws AulaNotFoundException {
+        Aula aula = aulaRepository.findById(id)
+                .orElseThrow(() -> new AulaNotFoundException(id));
+
+        return aulaMapper.toDTO(aula);
     }
 }
 
