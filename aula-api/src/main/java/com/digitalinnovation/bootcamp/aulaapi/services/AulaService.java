@@ -30,12 +30,6 @@ public class AulaService {
             return message;
         }
 
-    private MessageResponse createMesageResponse(String s, Long id) {
-        return MessageResponse.builder()
-                .message(s + id)
-                .build();
-    }
-
     public List<AulaDTO> findAll() {
         List<Aula> aula = aulaRepository.findAll();
         return aula.stream()
@@ -44,10 +38,26 @@ public class AulaService {
     }
 
     public AulaDTO getId(Long id) throws AulaNotFoundException {
-        Aula aula = aulaRepository.findById(id)
-                .orElseThrow(() -> new AulaNotFoundException(id));
-
+        Aula aula = verifyIfExists(id);
         return aulaMapper.toDTO(aula);
     }
+
+    public void delete(Long id) throws AulaNotFoundException {
+        verifyIfExists(id);
+        aulaRepository.deleteById(id);
+    }
+
+    private MessageResponse createMesageResponse(String s, Long id) {
+        return MessageResponse.builder()
+                .message(s + id)
+                .build();
+    }
+
+    private Aula verifyIfExists(Long id) throws AulaNotFoundException {
+        return aulaRepository.findById(id)
+                    .orElseThrow(() -> new AulaNotFoundException(id));
+    }
+
+
 }
 
