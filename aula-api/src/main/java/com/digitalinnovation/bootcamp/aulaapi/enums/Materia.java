@@ -7,11 +7,11 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum Materia {
 
-    PORTUGUES("Portugues"),
-    MATEMATICA("Matemática"),
-    HISTORIA("História"),
-    GEOGRAFIA("Geografia"),
-    CIENCIAS("Ciências");
+    LOGICA("Logica de Programação"),
+    DATABASE("Banco de Dados"),
+    JAVA("Java"),
+    SPRING("Spring"),
+    REST("Arquitetura REST");
 
     private final String materia;
 }
